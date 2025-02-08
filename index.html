@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
   <!-- Подключение основного файла стилей -->
   <link rel="stylesheet" href="style.css">
-  <!-- Дополнительные стили для радиобатонов и отступа между выбором пола и кнопкой -->
+  <!-- Дополнительные стили для радиобатонов, заголовка и отступа между выбором пола и кнопкой -->
   <style>
     /* Перекраска выбранного радиобатона в чёрный цвет */
     .radio-button__input:checked + .radio-button__label .radio-button__custom {
@@ -29,6 +29,27 @@
     /* Отступ между блоком выбора пола и кнопкой подтверждения */
     .gender-form-container .radio-button-container {
       margin-bottom: 20px;
+    }
+    /* Заголовок "Ваш пол:" */
+    .gender-title {
+      font-family: 'Didact Gothic', sans-serif;
+      font-size: 24px;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeInSlide 1s forwards;
+      animation-delay: 0.5s;
+    }
+    @keyframes fadeInSlide {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
@@ -105,6 +126,8 @@
   <!-- Форма выбора пола, изначально скрытая.
        Контейнер позиционируется строго по центру и использует шрифт Didact Gothic -->
   <div class="gender-form-container" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Didact Gothic', sans-serif;">
+    <!-- Заголовок с анимацией -->
+    <div class="gender-title">Ваш пол:</div>
     <div class="radio-button-container">
       <div class="radio-button">
         <input type="radio" class="radio-button__input" id="male" name="gender">
