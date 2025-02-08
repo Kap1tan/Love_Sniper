@@ -2,13 +2,16 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
+  <!-- Обеспечивает корректное отображение на мобильных устройствах -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Анимированный фон с загрузкой</title>
+  <!-- Подключаем шрифт Didact Gothic для красивого отображения русского текста -->
   <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
+  <!-- Подключение основного файла стилей -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Загрузчик -->
+  <!-- Загрузчик: отображает анимацию загрузки при входе на страницу -->
   <div class="loader-container">
     <div class="loader">
       <div class="loading-text">
@@ -17,6 +20,7 @@
       <div class="loading-bar-background">
         <div class="loading-bar">
           <div class="white-bars-container">
+            <!-- Несколько белых полос для эффекта заполнения -->
             <div class="white-bar"></div>
             <div class="white-bar"></div>
             <div class="white-bar"></div>
@@ -33,10 +37,80 @@
     </div>
   </div>
 
-  <!-- Приветственное сообщение (центральное) -->
+  <!-- Приветственное сообщение: появляется после загрузки -->
   <div class="welcome-container">
     <div class="welcome-text">Добро пожаловать в</div>
     <div class="welcome-title">LOVE SNIPER</div>
   </div>
+
+  <!-- Контейнер для формы ввода имени, кнопки и сообщения об ошибке -->
+  <div class="name-form-container">
+    <!-- Форма ввода имени -->
+    <div class="form-control">
+      <!-- Поле ввода. type="text" и required для обязательного заполнения -->
+      <input type="text" required>
+      <!-- Метка с анимацией появления каждой буквы. Здесь вместо "Username" используется надпись "Как вас называть?" -->
+      <label>
+        <span style="transition-delay:0ms">К</span>
+        <span style="transition-delay:50ms">а</span>
+        <span style="transition-delay:100ms">к</span>
+        <span style="transition-delay:150ms"> </span>
+        <span style="transition-delay:200ms">в</span>
+        <span style="transition-delay:250ms">а</span>
+        <span style="transition-delay:300ms">с</span>
+        <span style="transition-delay:350ms"> </span>
+        <span style="transition-delay:400ms">н</span>
+        <span style="transition-delay:450ms">а</span>
+        <span style="transition-delay:550ms">з</span>
+        <span style="transition-delay:600ms">ы</span>
+        <span style="transition-delay:650ms">в</span>
+        <span style="transition-delay:700ms">а</span>
+        <span style="transition-delay:750ms">т</span>
+        <span style="transition-delay:800ms">ь</span>
+        <span style="transition-delay:850ms">?</span>
+      </label>
+    </div>
+
+    <!-- Кнопка "Подтвердить" с оформлением от Uiverse.io by Voxybuns -->
+    <button id="confirmButton">
+      <span class="button_top">Подтвердить</span>
+    </button>
+
+    <!-- Блок для вывода сообщения об ошибке -->
+    <div id="errorMessage" class="error-message"></div>
+  </div>
+
+  <!-- Скрипт для валидации ввода имени при нажатии на кнопку -->
+  <script>
+    // Получаем элементы: кнопку, поле ввода и блок для ошибки
+    const confirmButton = document.getElementById("confirmButton");
+    const inputField = document.querySelector(".form-control input");
+    const errorMessage = document.getElementById("errorMessage");
+
+    // Обработчик клика по кнопке "Подтвердить"
+    confirmButton.addEventListener("click", function() {
+      // Убираем лишние пробелы по краям ввода
+      const nameValue = inputField.value.trim();
+
+      // Если поле пустое – выводим ошибку
+      if (nameValue === "") {
+        errorMessage.textContent = "Ошибка: поле не может быть пустым!";
+        errorMessage.style.display = "block";
+        return;
+      }
+
+      // Если введено больше 32 символов – выводим ошибку
+      if (nameValue.length > 32) {
+        errorMessage.textContent = "Ошибка: введено больше 32 символов!";
+        errorMessage.style.display = "block";
+        return;
+      }
+
+      // Если ошибок нет, скрываем сообщение об ошибке
+      errorMessage.style.display = "none";
+      // Здесь можно добавить дальнейшие действия при успешном вводе (например, отправку данных)
+      console.log("Введённое имя:", nameValue);
+    });
+  </script>
 </body>
 </html>
