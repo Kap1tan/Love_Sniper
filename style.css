@@ -200,7 +200,7 @@ body {
   padding: 15px 0;
   font-size: 18px;
   color: #fff;
-  font-family: "Didact Gothic", sans-serif; /* Применение шрифта для русского текста */
+  font-family: "Didact Gothic", sans-serif;
 }
 
 .form-control input:focus,
@@ -232,7 +232,6 @@ body {
 }
 
 /* Контейнер для формы ввода имени, кнопки и сообщения об ошибке */
-/* Позиционируется по центру и появляется после приветственного сообщения (задержка 13 секунд) */
 .name-form-container {
   position: absolute;
   top: 50%;
@@ -254,7 +253,6 @@ body {
 
 /* Стили для кнопки "Подтвердить" (от Uiverse.io by Voxybuns) */
 button {
-  /* Переменные для скругления и цветов */
   --button_radius: 0.75em;
   --button_color: #e8e8e8;
   --button_outline_color: #000000;
@@ -264,7 +262,6 @@ button {
   cursor: pointer;
   border-radius: var(--button_radius);
   background: var(--button_outline_color);
-  /* Для центровки кнопки внутри контейнера */
   margin: 0 auto;
   display: block;
 }
@@ -281,12 +278,10 @@ button {
   transition: transform 0.1s ease;
 }
 
-/* При наведении кнопка немного поднимается */
 button:hover .button_top {
   transform: translateY(-0.33em);
 }
 
-/* При нажатии кнопка возвращается в исходное положение */
 button:active .button_top {
   transform: translateY(0);
 }
@@ -305,6 +300,7 @@ button:active .button_top {
   display: none;
 }
 
+/* Стили для радиобатонов */
 .radio-button-container {
   display: flex;
   align-items: center;
@@ -348,19 +344,52 @@ button:active .button_top {
   transition: all 0.3s ease;
 }
 
-.radio-button__input:checked + .radio-button__label .radio-button__custom {
-  background-color: #4c8bf5;
-  border-color: transparent;
-  transform: scale(0.8);
-  box-shadow: 0 0 20px #4c8bf580;
+/* Новые правила для формы выбора возраста */
+.age-form-container {
+  /* Используем шрифт Dosis для этой секции, как в предоставленном примере */
+  font-family: "Dosis", Helvetica, Arial, sans-serif;
 }
 
-.radio-button__input:checked + .radio-button__label {
-  color: #4c8bf5;
+.age-form-container .value {
+  border-bottom: 4px dashed #bdc3c7;
+  text-align: center;
+  font-weight: bold;
+  font-size: 10em;
+  width: 300px;
+  height: 100px;
+  line-height: 60px;
+  margin: 40px auto;
+  letter-spacing: -0.07em;
+  text-shadow: white 2px 2px 2px;
 }
 
-.radio-button__label:hover .radio-button__custom {
-  transform: scale(1.2);
-  border-color: #4c8bf5;
-  box-shadow: 0 0 20px #4c8bf580;
+.age-form-container input[type="range"] {
+  display: block;
+  -webkit-appearance: none;
+  background-color: #bdc3c7;
+  width: 300px;
+  height: 5px;
+  border-radius: 5px;
+  margin: 0 auto;
+  outline: 0;
+}
+
+.age-form-container input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: #e74c3c;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.age-form-container input[type="range"]::-webkit-slider-thumb:hover {
+  background-color: white;
+  border: 2px solid #e74c3c;
+}
+
+.age-form-container input[type="range"]::-webkit-slider-thumb:active {
+  transform: scale(1.6);
 }
