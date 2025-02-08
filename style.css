@@ -26,16 +26,16 @@ body {
   }
 }
 
-/* Контейнер для анимации загрузки */
+/* Контейнер загрузчика – центрирование */
 .loader-container {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  animation: fadeOut 8s forwards; /* Через 7 секунд исчезает за 1 секунду */
+  animation: fadeOut 8s forwards; /* После 7 секунд исчезает за 1 секунду */
 }
 
-/* Отвечает за положение элементов */
+/* Стили для загрузчика */
 .loader {
   display: flex;
   align-items: center;
@@ -44,15 +44,13 @@ body {
   gap: 5px;
 }
 
-/* Русский текст "Загрузка..." с шрифтом Didact Gothic */
 .loading-text {
-  font-family: "Didact Gothic", sans-serif; /* Используем шрифт Didact Gothic */
-  font-size: 26px; /* Размер шрифта */
-  font-weight: 400; /* Жирность шрифта (этот шрифт имеет только один вариант толщины) */
-  color: white; /* Цвет текста */
+  font-family: "Didact Gothic", sans-serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: white;
 }
 
-/* Анимация точек "..." */
 .dot {
   margin-left: 3px;
   animation: blink 1.5s infinite;
@@ -69,7 +67,6 @@ body {
   --height: 30px;
   display: flex;
   align-items: center;
-  box-sizing: border-box;
   padding: 5px;
   width: 200px;
   height: var(--height);
@@ -89,7 +86,7 @@ body {
   overflow: hidden;
   background: linear-gradient(0deg, rgba(222, 74, 15, 1) 0%, rgba(249, 199, 79, 1) 100%);
   border-radius: calc(var(--height) / 2);
-  animation: loading 7s ease-out forwards; /* Двигается ровно 7 секунд */
+  animation: loading 7s ease-out forwards; /* Анимация заполнения за 7 секунд */
 }
 
 .white-bars-container {
@@ -100,15 +97,11 @@ body {
 }
 
 .white-bar {
-  background: linear-gradient(
-    -45deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0) 70%
-  );
+  background: linear-gradient(-45deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 70%);
   width: 10px;
   height: 45px;
   opacity: 0.3;
-  rotate: 45deg;
+  transform: rotate(45deg);
 }
 
 /* Анимация заполнения полосы загрузки */
@@ -121,13 +114,13 @@ body {
   }
 }
 
-/* Анимация исчезновения после 7 секунд */
+/* Анимация исчезновения загрузчика */
 @keyframes fadeOut {
   0% {
     opacity: 1;
   }
   87.5% {
-    opacity: 1; /* Держит 7 секунд без изменений */
+    opacity: 1;
   }
   100% {
     opacity: 0;
@@ -135,12 +128,59 @@ body {
   }
 }
 
-/* Анимация точек "Загрузка..." */
+/* Анимация точек */
 @keyframes blink {
   0%, 100% {
     opacity: 0;
   }
   50% {
     opacity: 1;
+  }
+}
+
+/* Приветственное сообщение – центрирование и анимация */
+.welcome-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* Центрирование по горизонтали и вертикали */
+  transform: translate(-50%, -50%);
+  text-align: center;
+  opacity: 0;
+  animation: welcomeAnimation 5s 8s forwards; /* Запуск через 8 секунд */
+}
+
+.welcome-text {
+  font-family: "Didact Gothic", sans-serif;
+  font-size: 30px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.welcome-title {
+  font-family: "Didact Gothic", sans-serif;
+  font-size: 50px;
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Анимация появления и исчезновения приветствия */
+@keyframes welcomeAnimation {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 20px));
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  80% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% - 20px));
   }
 }
