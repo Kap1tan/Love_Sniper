@@ -188,7 +188,7 @@ body {
 .form-control {
   position: relative;
   margin: 20px 0 40px;
-  width: 380px; /* Увеличено в 2 раза по сравнению с исходным значением */
+  width: 330px; /* Увеличено в 2 раза по сравнению с исходным значением */
 }
 
 .form-control input {
@@ -237,7 +237,7 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-40%, -40%);
+  transform: translate(-50%, -50%);
   opacity: 0;
   animation: fadeIn 1s 13s forwards;
 }
