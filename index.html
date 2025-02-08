@@ -3,30 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Анимированный фон</title>
+  <title>Анимированный фон с загрузкой</title>
+  <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Анимированный фон -->
 
-  <!-- Анимация загрузки -->
-  <div class="loading-wrapper">
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="shadow"></div>
-      <div class="shadow"></div>
-      <div class="shadow"></div>
+  <div class="loader-container">
+    <div class="loader">
+      <div class="loading-text">
+        Загрузка<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span>
+      </div>
+      <div class="loading-bar-background">
+        <div class="loading-bar">
+          <div class="white-bars-container">
+            <div class="white-bar"></div>
+            <div class="white-bar"></div>
+            <div class="white-bar"></div>
+            <div class="white-bar"></div>
+            <div class="white-bar"></div>
+            <div class="white-bar"></div>
+            <div class="white-bar"></div>
+            <div class="white-bar"></div>
+            <div class="white-bar"></div>
+            <div class="white-bar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <script>
-    // Исчезновение анимации через 5 секунд
-    setTimeout(() => {
-      document.querySelector(".loading-wrapper").style.opacity = "0";
-      setTimeout(() => {
-        document.querySelector(".loading-wrapper").style.display = "none";
-      }, 1000);
-    }, 7000);
-  </script>
-
 </body>
 </html>
