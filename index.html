@@ -7,6 +7,26 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Фон без дополнительного содержимого -->
+
+  <!-- Анимация загрузки -->
+  <div class="loading-wrapper">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="shadow"></div>
+      <div class="shadow"></div>
+      <div class="shadow"></div>
+  </div>
+
+  <script>
+    // Исчезновение анимации через 5 секунд
+    setTimeout(() => {
+      document.querySelector(".loading-wrapper").style.opacity = "0";
+      setTimeout(() => {
+        document.querySelector(".loading-wrapper").style.display = "none";
+      }, 1000);
+    }, 7000);
+  </script>
+
 </body>
 </html>
