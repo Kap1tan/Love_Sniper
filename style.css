@@ -1,0 +1,28 @@
+/* Сброс базовых стилей */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  /* Линейный градиент с фиолетовыми и дополнительными цветами */
+  background: linear-gradient(45deg, #6a3093, #a044ff, #ff5f6d, #8e2de2);
+  background-size: 400% 400%;
+  /* Уменьшена длительность анимации до 8 секунд */
+  animation: gradientAnimation 8s ease infinite;
+}
+
+/* Анимация плавного перемещения градиента */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
