@@ -1,11 +1,11 @@
-/* Сброс базовых стилей */
+/* Сброс базовых стилей для всех элементов */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Анимированный фон */
+/* Анимированный фон страницы */
 body {
   min-height: 100vh;
   background: linear-gradient(45deg, #6a3093, #a044ff, #ff5f6d, #8e2de2);
@@ -13,7 +13,7 @@ body {
   animation: gradientAnimation 8s ease infinite;
 }
 
-/* Анимация плавного перемещения градиента */
+/* Ключевые кадры для анимации градиента */
 @keyframes gradientAnimation {
   0% {
     background-position: 0% 50%;
@@ -26,16 +26,16 @@ body {
   }
 }
 
-/* Контейнер загрузчика – центрирование */
+/* Стили для контейнера загрузчика: центрирование и анимация исчезновения */
 .loader-container {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  animation: fadeOut 8s forwards; /* После 7 секунд исчезает за 1 секунду */
+  animation: fadeOut 8s forwards; /* Исчезает за 1 секунду после 7 секунд отображения */
 }
 
-/* Стили для загрузчика */
+/* Стили для самого загрузчика */
 .loader {
   display: flex;
   align-items: center;
@@ -86,7 +86,7 @@ body {
   overflow: hidden;
   background: linear-gradient(0deg, rgba(222, 74, 15, 1) 0%, rgba(249, 199, 79, 1) 100%);
   border-radius: calc(var(--height) / 2);
-  animation: loading 7s ease-out forwards; /* Анимация заполнения за 7 секунд */
+  animation: loading 7s ease-out forwards; /* Заполнение полосы за 7 секунд */
 }
 
 .white-bars-container {
@@ -128,7 +128,7 @@ body {
   }
 }
 
-/* Анимация точек */
+/* Анимация мигания точек */
 @keyframes blink {
   0%, 100% {
     opacity: 0;
@@ -138,16 +138,15 @@ body {
   }
 }
 
-/* Приветственное сообщение – центрирование и анимация */
+/* Приветственное сообщение: центрирование и анимация появления/исчезновения */
 .welcome-container {
   position: absolute;
   top: 50%;
   left: 50%;
-  /* Центрирование по горизонтали и вертикали */
   transform: translate(-50%, -50%);
   text-align: center;
   opacity: 0;
-  animation: welcomeAnimation 5s 8s forwards; /* Запуск через 8 секунд */
+  animation: welcomeAnimation 5s 8s forwards; /* Появляется через 8 секунд */
 }
 
 .welcome-text {
@@ -165,7 +164,7 @@ body {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Анимация появления и исчезновения приветствия */
+/* Анимация для приветственного сообщения */
 @keyframes welcomeAnimation {
   0% {
     opacity: 0;
@@ -183,4 +182,125 @@ body {
     opacity: 0;
     transform: translate(-50%, calc(-50% - 20px));
   }
+}
+
+/* Стили для формы ввода имени (исходный стиль от Uiverse.io с изменениями) */
+.form-control {
+  position: relative;
+  margin: 20px 0 40px;
+  width: 380px; /* Увеличено в 2 раза по сравнению с исходным значением */
+}
+
+.form-control input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px #fff solid;
+  display: block;
+  width: 100%;
+  padding: 15px 0;
+  font-size: 18px;
+  color: #fff;
+  font-family: "Didact Gothic", sans-serif; /* Применение шрифта для русского текста */
+}
+
+.form-control input:focus,
+.form-control input:valid {
+  outline: 0;
+  border-bottom-color: lightblue;
+}
+
+.form-control label {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  pointer-events: none;
+}
+
+.form-control label span {
+  display: inline-block;
+  font-size: 18px;
+  min-width: 5px;
+  color: #fff;
+  font-family: "Didact Gothic", sans-serif;
+  transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.form-control input:focus + label span,
+.form-control input:valid + label span {
+  color: lightblue;
+  transform: translateY(-30px);
+}
+
+/* Контейнер для формы ввода имени, кнопки и сообщения об ошибке */
+/* Позиционируется по центру и появляется после приветственного сообщения (задержка 13 секунд) */
+.name-form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: fadeIn 1s 13s forwards;
+}
+
+/* Анимация появления для формы ввода имени */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Стили для кнопки "Подтвердить" (от Uiverse.io by Voxybuns) */
+button {
+  /* Переменные для скругления и цветов */
+  --button_radius: 0.75em;
+  --button_color: #e8e8e8;
+  --button_outline_color: #000000;
+  font-size: 17px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--button_radius);
+  background: var(--button_outline_color);
+  /* Для центровки кнопки внутри контейнера */
+  margin: 0 auto;
+  display: block;
+}
+
+.button_top {
+  display: block;
+  box-sizing: border-box;
+  border: 2px solid var(--button_outline_color);
+  border-radius: var(--button_radius);
+  padding: 0.75em 1.5em;
+  background: var(--button_color);
+  color: var(--button_outline_color);
+  transform: translateY(-0.2em);
+  transition: transform 0.1s ease;
+}
+
+/* При наведении кнопка немного поднимается */
+button:hover .button_top {
+  transform: translateY(-0.33em);
+}
+
+/* При нажатии кнопка возвращается в исходное положение */
+button:active .button_top {
+  transform: translateY(0);
+}
+
+/* Стили для сообщения об ошибке */
+.error-message {
+  color: #ff5f6d;
+  background: rgba(255, 90, 109, 0.1);
+  border: 1px solid #ff5f6d;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+  text-align: center;
+  font-family: "Didact Gothic", sans-serif;
+  font-size: 16px;
+  display: none;
 }
