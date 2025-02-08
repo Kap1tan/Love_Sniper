@@ -1,296 +1,395 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <!-- Обеспечивает корректное отображение на мобильных устройствах -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Анимированный фон с загрузкой</title>
-  <!-- Подключаем шрифт Didact Gothic для красивого отображения русского текста -->
-  <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
-  <!-- Подключение основного файла стилей -->
-  <link rel="stylesheet" href="style.css">
-  <!-- Дополнительные стили для радиобатонов, заголовков и форм -->
-  <style>
-    /* === Секция: Стили для радиобатонов === */
-    /* Перекраска выбранного радиобатона в чёрный цвет */
-    .radio-button__input:checked + .radio-button__label .radio-button__custom {
-      background-color: #000;
-      border-color: transparent;
-      transform: scale(0.8);
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    }
-    .radio-button__input:checked + .radio-button__label {
-      color: #000;
-    }
-    .radio-button__label:hover .radio-button__custom {
-      transform: scale(1.2);
-      border-color: #000;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    }
-    /* Отступ между блоком выбора пола и кнопкой подтверждения */
-    .gender-form-container .radio-button-container {
-      margin-bottom: 20px;
-    }
-    /* Заголовок "Ваш пол:" с анимацией */
-    .gender-title {
-      font-family: 'Didact Gothic', sans-serif;
-      font-size: 24px;
-      color: #fff;
-      text-align: center;
-      margin-bottom: 20px;
-      opacity: 0;
-      animation: fadeInSlide 1s forwards;
-      animation-delay: 0.5s;
-    }
-    @keyframes fadeInSlide {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    /* === Секция: Стили для формы выбора возраста === */
-    .age-form-container {
-      display: none;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: 'Didact Gothic', sans-serif; /* Используем тот же шрифт Didact Gothic */
-      text-align: center;
-    }
-    .age-form-container .age-title {
-      font-size: 24px;
-      margin-bottom: 20px;
-      color: #fff;
-      opacity: 0;
-      animation: fadeInSlide 1s forwards;
-      animation-delay: 0.5s;
-    }
-    .age-form-container .age-value {
-      border-bottom: 2px dashed #bdc3c7;
-      text-align: center;
-      font-weight: bold;
-      font-size: 3em;       /* Размер цифры можно изменить здесь */
-      width: 150px;         /* Ширина блока с цифрой */
-      height: 50px;         /* Высота блока с цифрой */
-      line-height: 50px;
-      margin: 20px auto;
-      letter-spacing: -0.02em;
-      color: #fff;
-    }
-    .age-form-container input[type="range"] {
-      display: block;
-      -webkit-appearance: none;
-      background-color: #bdc3c7;
-      width: 150px;         /* Ширина слайдера */
-      height: 5px;
-      border-radius: 5px;
-      margin: 0 auto;
-      outline: 0;
-    }
-    .age-form-container input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      background-color: #e74c3c;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      border: 2px solid white;
-      cursor: pointer;
-      transition: 0.3s ease-in-out;
-    }
-    .age-form-container input[type="range"]::-webkit-slider-thumb:hover {
-      background-color: white;
-      border: 2px solid #e74c3c;
-    }
-    .age-form-container input[type="range"]::-webkit-slider-thumb:active {
-      transform: scale(1.2);
-    }
-    /* Отступ для кнопки подтверждения в форме выбора возраста,
-       чтобы кнопка располагалась ниже слайдера и цифры */
-    .age-form-container button {
-      margin-top: 20px;
-    }
-  </style>
-</head>
-<body>
-  <!-- ================== Секция: Загрузчик ================== -->
-  <div class="loader-container">
-    <div class="loader">
-      <div class="loading-text">
-        Загрузка<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span>
-      </div>
-      <div class="loading-bar-background">
-        <div class="loading-bar">
-          <div class="white-bars-container">
-            <!-- Несколько белых полос для эффекта заполнения -->
-            <div class="white-bar"></div>
-            <div class="white-bar"></div>
-            <div class="white-bar"></div>
-            <div class="white-bar"></div>
-            <div class="white-bar"></div>
-            <div class="white-bar"></div>
-            <div class="white-bar"></div>
-            <div class="white-bar"></div>
-            <div class="white-bar"></div>
-            <div class="white-bar"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+/* Сброс базовых стилей для всех элементов */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  <!-- ================== Секция: Приветственное сообщение ================== -->
-  <div class="welcome-container">
-    <div class="welcome-text">Добро пожаловать в</div>
-    <div class="welcome-title">LOVE SNIPER</div>
-  </div>
+/* Анимированный фон страницы */
+body {
+  min-height: 100vh;
+  background: linear-gradient(45deg, #6a3093, #a044ff, #ff5f6d, #8e2de2);
+  background-size: 400% 400%;
+  animation: gradientAnimation 8s ease infinite;
+}
 
-  <!-- ================== Секция: Форма ввода имени ================== -->
-  <div class="name-form-container">
-    <!-- Форма ввода имени -->
-    <div class="form-control">
-      <input type="text" required>
-      <label>
-        <!-- Каждая буква с задержкой анимации (можете изменить задержки по необходимости) -->
-        <span style="transition-delay:0ms">К</span>
-        <span style="transition-delay:50ms">а</span>
-        <span style="transition-delay:100ms">к</span>
-        <span style="transition-delay:150ms"> </span>
-        <span style="transition-delay:200ms">в</span>
-        <span style="transition-delay:250ms">а</span>
-        <span style="transition-delay:300ms">с</span>
-        <span style="transition-delay:350ms"> </span>
-        <span style="transition-delay:400ms">н</span>
-        <span style="transition-delay:450ms">а</span>
-        <span style="transition-delay:550ms">з</span>
-        <span style="transition-delay:600ms">ы</span>
-        <span style="transition-delay:650ms">в</span>
-        <span style="transition-delay:700ms">а</span>
-        <span style="transition-delay:750ms">т</span>
-        <span style="transition-delay:800ms">ь</span>
-        <span style="transition-delay:850ms">?</span>
-      </label>
-    </div>
-    <!-- Кнопка подтверждения имени -->
-    <button id="confirmButton">
-      <span class="button_top">Подтвердить</span>
-    </button>
-    <!-- Сообщение об ошибке ввода имени -->
-    <div id="errorMessage" class="error-message"></div>
-  </div>
+/* Ключевые кадры для анимации градиента */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 
-  <!-- ================== Секция: Форма выбора пола ================== -->
-  <div class="gender-form-container" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Didact Gothic', sans-serif;">
-    <!-- Заголовок выбора пола -->
-    <div class="gender-title">Ваш пол:</div>
-    <div class="radio-button-container">
-      <!-- Радиокнопка "Мужской" -->
-      <div class="radio-button">
-        <input type="radio" class="radio-button__input" id="male" name="gender">
-        <label class="radio-button__label" for="male">
-          <span class="radio-button__custom"></span>
-          Мужской
-        </label>
-      </div>
-      <!-- Радиокнопка "Женский" -->
-      <div class="radio-button">
-        <input type="radio" class="radio-button__input" id="female" name="gender">
-        <label class="radio-button__label" for="female">
-          <span class="radio-button__custom"></span>
-          Женский
-        </label>
-      </div>
-    </div>
-    <!-- Кнопка подтверждения выбора пола -->
-    <button id="confirmGenderButton">
-      <span class="button_top">Подтвердить</span>
-    </button>
-    <!-- Сообщение об ошибке выбора пола -->
-    <div id="genderErrorMessage" class="error-message"></div>
-  </div>
+/* Стили для контейнера загрузчика: центрирование и анимация исчезновения */
+.loader-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: fadeOut 8s forwards; /* Исчезает за 1 секунду после 7 секунд отображения */
+}
 
-  <!-- ================== Секция: Форма выбора возраста ================== -->
-  <div class="age-form-container">
-    <!-- Заголовок выбора возраста -->
-    <div class="age-title">Ваш возраст:</div>
-    <!-- Блок отображения выбранного значения возраста -->
-    <div class="age-value">18</div>
-    <!-- Слайдер выбора возраста (от 18 до 99) -->
-    <input type="range" min="18" max="99" step="1" value="18">
-    <!-- Кнопка подтверждения выбора возраста, с отступом сверху (см. стиль выше) -->
-    <button id="confirmAgeButton">
-      <span class="button_top">Подтвердить</span>
-    </button>
-    <!-- Сообщение об ошибке выбора возраста (если понадобится) -->
-    <div id="ageErrorMessage" class="error-message"></div>
-  </div>
+/* Стили для самого загрузчика */
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+}
 
-  <!-- ================== Секция: Скрипты ================== -->
-  <script>
-    // ===== Обработчик ввода имени =====
-    const confirmButton = document.getElementById("confirmButton");
-    const inputField = document.querySelector(".form-control input");
-    const errorMessage = document.getElementById("errorMessage");
+.loading-text {
+  font-family: "Didact Gothic", sans-serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: white;
+}
 
-    confirmButton.addEventListener("click", function() {
-      const nameValue = inputField.value.trim();
-      if (nameValue === "") {
-        errorMessage.textContent = "Ошибка: поле не может быть пустым!";
-        errorMessage.style.display = "block";
-        return;
-      }
-      if (nameValue.length > 32) {
-        errorMessage.textContent = "Ошибка: введено больше 32 символов!";
-        errorMessage.style.display = "block";
-        return;
-      }
-      errorMessage.style.display = "none";
-      // Скрываем форму ввода имени и переходим к выбору пола
-      document.querySelector(".name-form-container").style.display = "none";
-      document.querySelector(".gender-form-container").style.display = "block";
-      console.log("Введённое имя:", nameValue);
-    });
+.dot {
+  margin-left: 3px;
+  animation: blink 1.5s infinite;
+}
+.dot:nth-child(2) {
+  animation-delay: 0.3s;
+}
+.dot:nth-child(3) {
+  animation-delay: 0.6s;
+}
 
-    // ===== Обработчик выбора пола =====
-    const confirmGenderButton = document.getElementById("confirmGenderButton");
-    const genderErrorMessage = document.getElementById("genderErrorMessage");
+/* Полоска загрузки */
+.loading-bar-background {
+  --height: 30px;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  width: 200px;
+  height: var(--height);
+  background-color: #212121;
+  box-shadow: #0c0c0c -2px 2px 4px 0px inset;
+  border-radius: calc(var(--height) / 2);
+}
 
-    confirmGenderButton.addEventListener("click", function() {
-      const selectedGender = document.querySelector('input[name="gender"]:checked');
-      if (!selectedGender) {
-        genderErrorMessage.textContent = "Ошибка: выберите ваш пол!";
-        genderErrorMessage.style.display = "block";
-        return;
-      }
-      genderErrorMessage.style.display = "none";
-      console.log("Выбранный пол:", selectedGender.id);
-      // Скрываем форму выбора пола и переходим к выбору возраста
-      document.querySelector(".gender-form-container").style.display = "none";
-      document.querySelector(".age-form-container").style.display = "block";
-    });
+.loading-bar {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  --height: 20px;
+  width: 0%;
+  height: var(--height);
+  overflow: hidden;
+  background: linear-gradient(0deg, rgba(222, 74, 15, 1) 0%, rgba(249, 199, 79, 1) 100%);
+  border-radius: calc(var(--height) / 2);
+  animation: loading 7s ease-out forwards; /* Заполнение полосы за 7 секунд */
+}
 
-    // ===== Обработчик выбора возраста =====
-    // Обновление отображаемого значения возраста при перемещении слайдера
-    const ageElem = document.querySelector('.age-form-container input[type="range"]');
-    const updateAgeValue = function() {
-      const newAge = ageElem.value;
-      const target = document.querySelector('.age-form-container .age-value');
-      target.innerHTML = newAge;
-    };
-    ageElem.addEventListener("input", updateAgeValue);
+.white-bars-container {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
 
-    // Обработчик подтверждения выбора возраста
-    const confirmAgeButton = document.getElementById("confirmAgeButton");
-    const ageErrorMessage = document.getElementById("ageErrorMessage");
-    confirmAgeButton.addEventListener("click", function() {
-      const age = ageElem.value;
-      console.log("Выбранный возраст:", age);
-      // Здесь можно добавить дальнейшую обработку выбранного возраста
-    });
-  </script>
-</body>
-</html>
+.white-bar {
+  background: linear-gradient(-45deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 70%);
+  width: 10px;
+  height: 45px;
+  opacity: 0.3;
+  transform: rotate(45deg);
+}
+
+/* Анимация заполнения полосы загрузки */
+@keyframes loading {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Анимация исчезновения загрузчика */
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  87.5% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Анимация мигания точек */
+@keyframes blink {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Приветственное сообщение: центрирование и анимация появления/исчезновения */
+.welcome-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  opacity: 0;
+  animation: welcomeAnimation 5s 8s forwards; /* Появляется через 8 секунд */
+}
+
+.welcome-text {
+  font-family: "Didact Gothic", sans-serif;
+  font-size: 30px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.welcome-title {
+  font-family: "Didact Gothic", sans-serif;
+  font-size: 50px;
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Анимация для приветственного сообщения */
+@keyframes welcomeAnimation {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 20px));
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  80% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% - 20px));
+  }
+}
+
+/* Стили для формы ввода имени (исходный стиль от Uiverse.io с изменениями) */
+.form-control {
+  position: relative;
+  margin: 20px 0 40px;
+  width: 330px; /* Увеличено в 2 раза по сравнению с исходным значением */
+}
+
+.form-control input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px #fff solid;
+  display: block;
+  width: 100%;
+  padding: 15px 0;
+  font-size: 18px;
+  color: #fff;
+  font-family: "Didact Gothic", sans-serif;
+}
+
+.form-control input:focus,
+.form-control input:valid {
+  outline: 0;
+  border-bottom-color: lightblue;
+}
+
+.form-control label {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  pointer-events: none;
+}
+
+.form-control label span {
+  display: inline-block;
+  font-size: 18px;
+  min-width: 5px;
+  color: #fff;
+  font-family: "Didact Gothic", sans-serif;
+  transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.form-control input:focus + label span,
+.form-control input:valid + label span {
+  color: lightblue;
+  transform: translateY(-30px);
+}
+
+/* Контейнер для формы ввода имени, кнопки и сообщения об ошибке */
+.name-form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: fadeIn 1s 13s forwards;
+}
+
+/* Анимация появления для формы ввода имени */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Стили для кнопки "Подтвердить" (от Uiverse.io by Voxybuns) */
+button {
+  --button_radius: 0.75em;
+  --button_color: #e8e8e8;
+  --button_outline_color: #000000;
+  font-size: 17px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--button_radius);
+  background: var(--button_outline_color);
+  margin: 0 auto;
+  display: block;
+}
+
+.button_top {
+  display: block;
+  box-sizing: border-box;
+  border: 2px solid var(--button_outline_color);
+  border-radius: var(--button_radius);
+  padding: 0.75em 1.5em;
+  background: var(--button_color);
+  color: var(--button_outline_color);
+  transform: translateY(-0.2em);
+  transition: transform 0.1s ease;
+}
+
+button:hover .button_top {
+  transform: translateY(-0.33em);
+}
+
+button:active .button_top {
+  transform: translateY(0);
+}
+
+/* Стили для сообщения об ошибке */
+.error-message {
+  color: #000000;
+  background: rgba(255, 90, 109, 0.1);
+  border: 1px solid #000000;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+  text-align: center;
+  font-family: "Didact Gothic", sans-serif;
+  font-size: 16px;
+  display: none;
+}
+
+/* Стили для радиобатонов */
+.radio-button-container {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.radio-button {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.radio-button__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radio-button__label {
+  display: inline-block;
+  padding-left: 30px;
+  margin-bottom: 10px;
+  position: relative;
+  font-size: 15px;
+  color: #f2f2f2;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.radio-button__custom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #555;
+  transition: all 0.3s ease;
+}
+
+/* Новые правила для формы выбора возраста */
+.age-form-container {
+  /* Используем шрифт Dosis для этой секции, как в предоставленном примере */
+  font-family: "Dosis", Helvetica, Arial, sans-serif;
+}
+
+.age-form-container .value {
+  border-bottom: 4px dashed #bdc3c7;
+  text-align: center;
+  font-weight: bold;
+  font-size: 10em;
+  width: 300px;
+  height: 100px;
+  line-height: 60px;
+  margin: 40px auto;
+  letter-spacing: -0.07em;
+  text-shadow: white 2px 2px 2px;
+}
+
+.age-form-container input[type="range"] {
+  display: block;
+  -webkit-appearance: none;
+  background-color: #bdc3c7;
+  width: 300px;
+  height: 5px;
+  border-radius: 5px;
+  margin: 0 auto;
+  outline: 0;
+}
+
+.age-form-container input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: #e74c3c;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.age-form-container input[type="range"]::-webkit-slider-thumb:hover {
+  background-color: white;
+  border: 2px solid #e74c3c;
+}
+
+.age-form-container input[type="range"]::-webkit-slider-thumb:active {
+  transform: scale(1.6);
+}
