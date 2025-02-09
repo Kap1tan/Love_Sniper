@@ -1,11 +1,11 @@
-/* Сброс базовых стилей для всех элементов */
+/* ===== Сброс базовых стилей для всех элементов ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Анимированный фон страницы */
+/* ===== Анимированный фон страницы ===== */
 body {
   min-height: 100vh;
   background: linear-gradient(45deg, #6a3093, #a044ff, #ff5f6d, #8e2de2);
@@ -13,7 +13,6 @@ body {
   animation: gradientAnimation 8s ease infinite;
 }
 
-/* Ключевые кадры для анимации градиента */
 @keyframes gradientAnimation {
   0% {
     background-position: 0% 50%;
@@ -26,16 +25,15 @@ body {
   }
 }
 
-/* Стили для контейнера загрузчика: центрирование и анимация исчезновения */
+/* ===== Стили загрузчика ===== */
 .loader-container {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  animation: fadeOut 8s forwards; /* Исчезает за 1 секунду после 7 секунд отображения */
+  animation: fadeOut 8s forwards;
 }
 
-/* Стили для самого загрузчика */
 .loader {
   display: flex;
   align-items: center;
@@ -55,14 +53,15 @@ body {
   margin-left: 3px;
   animation: blink 1.5s infinite;
 }
+
 .dot:nth-child(2) {
   animation-delay: 0.3s;
 }
+
 .dot:nth-child(3) {
   animation-delay: 0.6s;
 }
 
-/* Полоска загрузки */
 .loading-bar-background {
   --height: 30px;
   display: flex;
@@ -86,7 +85,7 @@ body {
   overflow: hidden;
   background: linear-gradient(0deg, rgba(222, 74, 15, 1) 0%, rgba(249, 199, 79, 1) 100%);
   border-radius: calc(var(--height) / 2);
-  animation: loading 7s ease-out forwards; /* Заполнение полосы за 7 секунд */
+  animation: loading 7s ease-out forwards;
 }
 
 .white-bars-container {
@@ -104,7 +103,6 @@ body {
   transform: rotate(45deg);
 }
 
-/* Анимация заполнения полосы загрузки */
 @keyframes loading {
   0% {
     width: 0;
@@ -114,7 +112,6 @@ body {
   }
 }
 
-/* Анимация исчезновения загрузчика */
 @keyframes fadeOut {
   0% {
     opacity: 1;
@@ -128,7 +125,6 @@ body {
   }
 }
 
-/* Анимация мигания точек */
 @keyframes blink {
   0%, 100% {
     opacity: 0;
@@ -138,7 +134,7 @@ body {
   }
 }
 
-/* Приветственное сообщение: центрирование и анимация появления/исчезновения */
+/* ===== Приветственное сообщение ===== */
 .welcome-container {
   position: absolute;
   top: 50%;
@@ -146,7 +142,7 @@ body {
   transform: translate(-50%, -50%);
   text-align: center;
   opacity: 0;
-  animation: welcomeAnimation 5s 8s forwards; /* Появляется через 8 секунд */
+  animation: welcomeAnimation 5s 8s forwards;
 }
 
 .welcome-text {
@@ -164,7 +160,6 @@ body {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Анимация для приветственного сообщения */
 @keyframes welcomeAnimation {
   0% {
     opacity: 0;
@@ -184,17 +179,17 @@ body {
   }
 }
 
-/* Стили для формы ввода имени (исходный стиль от Uiverse.io с изменениями) */
+/* ===== Форма ввода имени ===== */
 .form-control {
   position: relative;
   margin: 20px 0 40px;
-  width: 330px; /* Увеличено в 2 раза по сравнению с исходным значением */
+  width: 330px;
 }
 
 .form-control input {
   background-color: transparent;
   border: 0;
-  border-bottom: 2px #fff solid;
+  border-bottom: 2px solid #fff;
   display: block;
   width: 100%;
   padding: 15px 0;
@@ -231,7 +226,6 @@ body {
   transform: translateY(-30px);
 }
 
-/* Контейнер для формы ввода имени, кнопки и сообщения об ошибке */
 .name-form-container {
   position: absolute;
   top: 50%;
@@ -241,7 +235,6 @@ body {
   animation: fadeIn 1s 13s forwards;
 }
 
-/* Анимация появления для формы ввода имени */
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -251,7 +244,7 @@ body {
   }
 }
 
-/* Стили для кнопки "Подтвердить" (от Uiverse.io by Voxybuns) */
+/* ===== Кнопки ===== */
 button {
   --button_radius: 0.75em;
   --button_color: #e8e8e8;
@@ -286,11 +279,11 @@ button:active .button_top {
   transform: translateY(0);
 }
 
-/* Стили для сообщения об ошибке */
+/* ===== Сообщения об ошибке ===== */
 .error-message {
-  color: #000000;
+  color: #000;
   background: rgba(255, 90, 109, 0.1);
-  border: 1px solid #000000;
+  border: 1px solid #000;
   border-radius: 5px;
   padding: 10px;
   margin-top: 10px;
@@ -300,7 +293,7 @@ button:active .button_top {
   display: none;
 }
 
-/* Стили для радиобатонов */
+/* ===== Стили радиобатонов ===== */
 .radio-button-container {
   display: flex;
   align-items: center;
@@ -344,30 +337,92 @@ button:active .button_top {
   transition: all 0.3s ease;
 }
 
-/* Новые правила для формы выбора возраста */
-.age-form-container {
-  /* Используем шрифт Dosis для этой секции, как в предоставленном примере */
-  font-family: "Dosis", Helvetica, Arial, sans-serif;
+.radio-button__input:checked + .radio-button__label .radio-button__custom {
+  background-color: #000;
+  border-color: transparent;
+  transform: scale(0.8);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
-.age-form-container .value {
-  border-bottom: 4px dashed #bdc3c7;
+.radio-button__input:checked + .radio-button__label {
+  color: #000;
+}
+
+.radio-button__label:hover .radio-button__custom {
+  transform: scale(1.2);
+  border-color: #000;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.gender-form-container .radio-button-container {
+  margin-bottom: 20px;
+}
+
+.gender-title {
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 24px;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeInSlide 1s forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Стили форм выбора возраста, веса, роста и ввода города ===== */
+.age-form-container,
+.weight-form-container,
+.height-form-container,
+.city-form-container {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Didact Gothic', sans-serif;
+  text-align: center;
+}
+
+.age-form-container .age-title,
+.weight-form-container .weight-title,
+.height-form-container .height-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #fff;
+  opacity: 0;
+  animation: fadeInSlide 1s forwards;
+  animation-delay: 0.5s;
+}
+
+.age-form-container .age-value {
+  border-bottom: 2px dashed #bdc3c7;
   text-align: center;
   font-weight: bold;
-  font-size: 10em;
-  width: 300px;
-  height: 100px;
-  line-height: 60px;
-  margin: 40px auto;
-  letter-spacing: -0.07em;
-  text-shadow: white 2px 2px 2px;
+  font-size: 3em;
+  width: 150px;
+  height: 50px;
+  line-height: 50px;
+  margin: 20px auto;
+  letter-spacing: -0.02em;
+  color: #fff;
 }
 
 .age-form-container input[type="range"] {
   display: block;
   -webkit-appearance: none;
   background-color: #bdc3c7;
-  width: 300px;
+  width: 150px;
   height: 5px;
   border-radius: 5px;
   margin: 0 auto;
@@ -377,8 +432,8 @@ button:active .button_top {
 .age-form-container input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   background-color: #e74c3c;
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   border: 2px solid white;
   cursor: pointer;
@@ -391,5 +446,225 @@ button:active .button_top {
 }
 
 .age-form-container input[type="range"]::-webkit-slider-thumb:active {
-  transform: scale(1.6);
+  transform: scale(1.2);
+}
+
+.age-form-container button {
+  margin-top: 20px;
+}
+
+.weight-form-container .weight-value {
+  border-bottom: 2px dashed #bdc3c7;
+  text-align: center;
+  font-weight: bold;
+  font-size: 3em;
+  width: 150px;
+  height: 50px;
+  line-height: 50px;
+  margin: 20px auto;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.weight-form-container .weight-unit {
+  margin-left: 8px;
+  font-family: 'Didact Gothic', sans-serif;
+}
+
+.weight-form-container input[type="range"] {
+  display: block;
+  -webkit-appearance: none;
+  background-color: #bdc3c7;
+  width: 150px;
+  height: 5px;
+  border-radius: 5px;
+  margin: 0 auto;
+  outline: 0;
+}
+
+.weight-form-container input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: #e74c3c;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.weight-form-container input[type="range"]::-webkit-slider-thumb:hover {
+  background-color: white;
+  border: 2px solid #e74c3c;
+}
+
+.weight-form-container input[type="range"]::-webkit-slider-thumb:active {
+  transform: scale(1.2);
+}
+
+.weight-form-container button {
+  margin-top: 20px;
+}
+
+.height-form-container .height-value {
+  border-bottom: 2px dashed #bdc3c7;
+  text-align: center;
+  font-weight: bold;
+  font-size: 3em;
+  width: 150px;
+  height: 50px;
+  line-height: 50px;
+  margin: 20px auto;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.height-form-container .height-unit {
+  margin-left: 8px;
+  font-family: 'Didact Gothic', sans-serif;
+}
+
+.height-form-container input[type="range"] {
+  display: block;
+  -webkit-appearance: none;
+  background-color: #bdc3c7;
+  width: 150px;
+  height: 5px;
+  border-radius: 5px;
+  margin: 0 auto;
+  outline: 0;
+}
+
+.height-form-container input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: #e74c3c;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.height-form-container input[type="range"]::-webkit-slider-thumb:hover {
+  background-color: white;
+  border: 2px solid #e74c3c;
+}
+
+.height-form-container input[type="range"]::-webkit-slider-thumb:active {
+  transform: scale(1.2);
+}
+
+.height-form-container button {
+  margin-top: 20px;
+}
+
+/* ===== Стили для формы ввода города ===== */
+.city-form-container .form-control {
+  position: relative;
+  margin: 20px 0 40px;
+  width: 330px;
+}
+
+.city-form-container .form-control input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px solid #fff;
+  display: block;
+  width: 100%;
+  padding: 15px 0;
+  font-size: 18px;
+  color: #fff;
+  font-family: 'Didact Gothic', sans-serif;
+}
+
+.city-form-container .form-control input:focus,
+.city-form-container .form-control input:valid {
+  outline: 0;
+  border-bottom-color: lightblue;
+}
+
+.city-form-container .form-control label {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  pointer-events: none;
+}
+
+.city-form-container .form-control label span {
+  display: inline-block;
+  font-size: 18px;
+  min-width: 5px;
+  color: #fff;
+  font-family: 'Didact Gothic', sans-serif;
+  transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.city-form-container .form-control input:focus + label span,
+.city-form-container .form-control input:valid + label span {
+  color: lightblue;
+  transform: translateY(-30px);
+}
+
+.city-form-container button {
+  margin-top: 20px;
+}
+
+/* ===== Финальные анимации (показываются после ввода города) ===== */
+.final-animations-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Анимация сердечка: расположена по горизонтали по центру и чуть выше середины по вертикали */
+.heart-animation {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.heart-animation .heart i {
+  color: #000;
+  font-size: 90px;
+  animation: beat 0.9s infinite;
+  text-shadow:
+    0 0 5px red,
+    0 0 45px red,
+    0 0 90px red;
+}
+
+@keyframes beat {
+  0% { transform: scale(1); }
+  20% { transform: scale(1.15); }
+  40% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+/* Анимация текста: по центру по горизонтали и чуть ниже центра по вертикали */
+.text-animation {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 32px;
+  color: #fff;
+}
+
+.text-animation p {
+  margin: 0;
+}
+
+/* Фиксированная часть текста остаётся неподвижной */
+.fixed-text {
+  display: inline-block;
+}
+
+/* Изменяемая часть текста – белая с черным свечением */
+.changing-text {
+  color: #fff;
+  text-shadow: 0 0 5px #000, 0 0 15px #000, 0 0 30px #000;
+  transition: opacity 0.3s ease;
 }
