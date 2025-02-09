@@ -116,3 +116,27 @@ confirmCityButton.addEventListener("click", function() {
   document.querySelector(".city-form-container").style.display = "none";
   document.querySelector(".final-animations-container").style.display = "block";
 });
+
+
+function sendUserData() {
+  const userData = {
+    name: inputField.value.trim(),
+    gender: document.querySelector('input[name="gender"]:checked')?.id || "",
+    age: document.querySelector('.age-form-container input[type="range"]').value,
+    weight: document.querySelector('.weight-form-container input[type="range"]').value,
+    height: document.querySelector('.height-form-container input[type="range"]').value,
+    city: cityInputField.value.trim(),
+  };
+
+  fetch("https://kap1tan.github.io/Love_Sniper/", { // Замени на свой сервер
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(userData),
+  })
+  .then(response => response.json())
+  .then(data => console.log("Данные успешно сохранены!", data))
+  .catch(error => console.error("Ошибка сохранения:", error));
+}
+
+// Вызываем после заполнения формы
+confirmCityButton.addEventListener("click", sendUserData);
