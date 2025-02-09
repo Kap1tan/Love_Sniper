@@ -115,37 +115,4 @@ confirmCityButton.addEventListener("click", function() {
   // Переход: скрываем форму ввода города и показываем финальные анимации
   document.querySelector(".city-form-container").style.display = "none";
   document.querySelector(".final-animations-container").style.display = "block";
-
-  // Запуск анимации смены текста
-  startTextAnimation();
 });
-
-// ===== Функция для циклической смены текста =====
-function startTextAnimation() {
-  const phrases = [
-    "любовь на веки вечные.",
-    "идеального партнёра.",
-    "любовь всей жизни.",
-    "вторую половинку.",
-    "судьбоносную встречу.",
-    "настоящую романтику."
-  ];
-
-  let currentPhraseIndex = 0;
-  const changingTextElement = document.querySelector('.changing-text');
-
-  // Устанавливаем начальный текст
-  changingTextElement.textContent = phrases[currentPhraseIndex];
-  changingTextElement.style.opacity = 1;
-
-  setInterval(() => {
-    // Плавное исчезновение текста
-    changingTextElement.style.opacity = 0;
-    setTimeout(() => {
-      // Обновление текста и плавное появление
-      currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
-      changingTextElement.textContent = phrases[currentPhraseIndex];
-      changingTextElement.style.opacity = 1;
-    }, 300);
-  }, 2000);
-}
