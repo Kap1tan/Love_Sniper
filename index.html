@@ -12,6 +12,20 @@
   <!-- Подключение основного файла стилей -->
   <link rel="stylesheet" href="style.css">
 </head>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const userId = localStorage.getItem("telegramUserId");
+    if (!userId) {
+        const telegramWebApp = window.Telegram.WebApp;
+        if (telegramWebApp && telegramWebApp.initDataUnsafe && telegramWebApp.initDataUnsafe.user) {
+            localStorage.setItem("telegramUserId", telegramWebApp.initDataUnsafe.user.id);
+        } else {
+            console.error("Не удалось получить Telegram ID.");
+        }
+    }
+});
+</script>
+
 <body>
   <!-- ================== Секция: Загрузчик ================== -->
   <div class="loader-container">
