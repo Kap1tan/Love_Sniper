@@ -642,7 +642,7 @@ button:active .button_top {
   100% { transform: scale(1); }
 }
 
-/* Анимация текста: по центру по горизонтали и чуть ниже центра по вертикали */
+/* ===== (Остальные стили текстовой анимации остаются, но не используются) ===== */
 .text-animation {
   position: absolute;
   top: 60%;
@@ -657,12 +657,10 @@ button:active .button_top {
   margin: 0;
 }
 
-/* Фиксированная часть текста остаётся неподвижной */
 .fixed-text {
   display: inline-block;
 }
 
-/* Изменяемая часть текста – белая с черным свечением */
 .changing-text {
   color: #fff;
   text-shadow: 0 0 5px #000, 0 0 15px #000, 0 0 30px #000;
