@@ -7,114 +7,10 @@
   <title>Анимированный фон с загрузкой</title>
   <!-- Подключаем шрифт Didact Gothic для красивого отображения русского текста -->
   <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
+  <!-- Подключение Font Awesome для анимации сердечка -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   <!-- Подключение основного файла стилей -->
   <link rel="stylesheet" href="style.css">
-  <!-- Дополнительные стили для радиобатонов, заголовков и форм -->
-  <style>
-    /* === Секция: Стили для радиобатонов === */
-    /* Перекраска выбранного радиобатона в чёрный цвет */
-    .radio-button__input:checked + .radio-button__label .radio-button__custom {
-      background-color: #000;
-      border-color: transparent;
-      transform: scale(0.8);
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    }
-    .radio-button__input:checked + .radio-button__label {
-      color: #000;
-    }
-    .radio-button__label:hover .radio-button__custom {
-      transform: scale(1.2);
-      border-color: #000;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    }
-    /* Отступ между блоком выбора пола и кнопкой подтверждения */
-    .gender-form-container .radio-button-container {
-      margin-bottom: 20px;
-    }
-    /* Заголовок "Ваш пол:" с анимацией */
-    .gender-title {
-      font-family: 'Didact Gothic', sans-serif;
-      font-size: 24px;
-      color: #fff;
-      text-align: center;
-      margin-bottom: 20px;
-      opacity: 0;
-      animation: fadeInSlide 1s forwards;
-      animation-delay: 0.5s;
-    }
-    @keyframes fadeInSlide {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    /* === Секция: Стили для формы выбора возраста === */
-    .age-form-container {
-      display: none;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: 'Didact Gothic', sans-serif; /* Используем тот же шрифт Didact Gothic */
-      text-align: center;
-    }
-    .age-form-container .age-title {
-      font-size: 24px;
-      margin-bottom: 20px;
-      color: #fff;
-      opacity: 0;
-      animation: fadeInSlide 1s forwards;
-      animation-delay: 0.5s;
-    }
-    .age-form-container .age-value {
-      border-bottom: 2px dashed #bdc3c7;
-      text-align: center;
-      font-weight: bold;
-      font-size: 3em;       /* Размер цифры можно изменить здесь */
-      width: 150px;         /* Ширина блока с цифрой */
-      height: 50px;         /* Высота блока с цифрой */
-      line-height: 50px;
-      margin: 20px auto;
-      letter-spacing: -0.02em;
-      color: #fff;
-    }
-    .age-form-container input[type="range"] {
-      display: block;
-      -webkit-appearance: none;
-      background-color: #bdc3c7;
-      width: 150px;         /* Ширина слайдера */
-      height: 5px;
-      border-radius: 5px;
-      margin: 0 auto;
-      outline: 0;
-    }
-    .age-form-container input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      background-color: #e74c3c;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      border: 2px solid white;
-      cursor: pointer;
-      transition: 0.3s ease-in-out;
-    }
-    .age-form-container input[type="range"]::-webkit-slider-thumb:hover {
-      background-color: white;
-      border: 2px solid #e74c3c;
-    }
-    .age-form-container input[type="range"]::-webkit-slider-thumb:active {
-      transform: scale(1.2);
-    }
-    /* Отступ для кнопки подтверждения в форме выбора возраста,
-       чтобы кнопка располагалась ниже слайдера и цифры */
-    .age-form-container button {
-      margin-top: 20px;
-    }
-  </style>
 </head>
 <body>
   <!-- ================== Секция: Загрузчик ================== -->
@@ -126,7 +22,6 @@
       <div class="loading-bar-background">
         <div class="loading-bar">
           <div class="white-bars-container">
-            <!-- Несколько белых полос для эффекта заполнения -->
             <div class="white-bar"></div>
             <div class="white-bar"></div>
             <div class="white-bar"></div>
@@ -151,11 +46,9 @@
 
   <!-- ================== Секция: Форма ввода имени ================== -->
   <div class="name-form-container">
-    <!-- Форма ввода имени -->
     <div class="form-control">
       <input type="text" required>
       <label>
-        <!-- Каждая буква с задержкой анимации (можете изменить задержки по необходимости) -->
         <span style="transition-delay:0ms">К</span>
         <span style="transition-delay:50ms">а</span>
         <span style="transition-delay:100ms">к</span>
@@ -175,20 +68,16 @@
         <span style="transition-delay:850ms">?</span>
       </label>
     </div>
-    <!-- Кнопка подтверждения имени -->
     <button id="confirmButton">
       <span class="button_top">Подтвердить</span>
     </button>
-    <!-- Сообщение об ошибке ввода имени -->
     <div id="errorMessage" class="error-message"></div>
   </div>
 
   <!-- ================== Секция: Форма выбора пола ================== -->
   <div class="gender-form-container" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Didact Gothic', sans-serif;">
-    <!-- Заголовок выбора пола -->
     <div class="gender-title">Ваш пол:</div>
     <div class="radio-button-container">
-      <!-- Радиокнопка "Мужской" -->
       <div class="radio-button">
         <input type="radio" class="radio-button__input" id="male" name="gender">
         <label class="radio-button__label" for="male">
@@ -196,7 +85,6 @@
           Мужской
         </label>
       </div>
-      <!-- Радиокнопка "Женский" -->
       <div class="radio-button">
         <input type="radio" class="radio-button__input" id="female" name="gender">
         <label class="radio-button__label" for="female">
@@ -205,92 +93,87 @@
         </label>
       </div>
     </div>
-    <!-- Кнопка подтверждения выбора пола -->
     <button id="confirmGenderButton">
       <span class="button_top">Подтвердить</span>
     </button>
-    <!-- Сообщение об ошибке выбора пола -->
     <div id="genderErrorMessage" class="error-message"></div>
   </div>
 
   <!-- ================== Секция: Форма выбора возраста ================== -->
   <div class="age-form-container">
-    <!-- Заголовок выбора возраста -->
     <div class="age-title">Ваш возраст:</div>
-    <!-- Блок отображения выбранного значения возраста -->
     <div class="age-value">18</div>
-    <!-- Слайдер выбора возраста (от 18 до 99) -->
     <input type="range" min="18" max="99" step="1" value="18">
-    <!-- Кнопка подтверждения выбора возраста, с отступом сверху (см. стиль выше) -->
     <button id="confirmAgeButton">
       <span class="button_top">Подтвердить</span>
     </button>
-    <!-- Сообщение об ошибке выбора возраста (если понадобится) -->
     <div id="ageErrorMessage" class="error-message"></div>
   </div>
 
-  <!-- ================== Секция: Скрипты ================== -->
-  <script>
-    // ===== Обработчик ввода имени =====
-    const confirmButton = document.getElementById("confirmButton");
-    const inputField = document.querySelector(".form-control input");
-    const errorMessage = document.getElementById("errorMessage");
+  <!-- ================== Секция: Форма выбора веса ================== -->
+  <div class="weight-form-container">
+    <div class="weight-title">Ваш вес:</div>
+    <div class="weight-value">40<span class="weight-unit"> кг</span></div>
+    <input type="range" min="40" max="150" step="1" value="40">
+    <button id="confirmWeightButton">
+      <span class="button_top">Подтвердить</span>
+    </button>
+    <div id="weightErrorMessage" class="error-message"></div>
+  </div>
 
-    confirmButton.addEventListener("click", function() {
-      const nameValue = inputField.value.trim();
-      if (nameValue === "") {
-        errorMessage.textContent = "Ошибка: поле не может быть пустым!";
-        errorMessage.style.display = "block";
-        return;
-      }
-      if (nameValue.length > 32) {
-        errorMessage.textContent = "Ошибка: введено больше 32 символов!";
-        errorMessage.style.display = "block";
-        return;
-      }
-      errorMessage.style.display = "none";
-      // Скрываем форму ввода имени и переходим к выбору пола
-      document.querySelector(".name-form-container").style.display = "none";
-      document.querySelector(".gender-form-container").style.display = "block";
-      console.log("Введённое имя:", nameValue);
-    });
+  <!-- ================== Секция: Форма выбора роста ================== -->
+  <div class="height-form-container">
+    <div class="height-title">Ваш рост:</div>
+    <div class="height-value">170<span class="height-unit"> см</span></div>
+    <input type="range" min="150" max="210" step="1" value="170">
+    <button id="confirmHeightButton">
+      <span class="button_top">Подтвердить</span>
+    </button>
+    <div id="heightErrorMessage" class="error-message"></div>
+  </div>
 
-    // ===== Обработчик выбора пола =====
-    const confirmGenderButton = document.getElementById("confirmGenderButton");
-    const genderErrorMessage = document.getElementById("genderErrorMessage");
+  <!-- ================== Секция: Форма ввода города ================== -->
+  <div class="city-form-container">
+    <div class="form-control">
+      <input type="text" required>
+      <label>
+        <span style="transition-delay:0ms">В</span>
+        <span style="transition-delay:50ms">а</span>
+        <span style="transition-delay:100ms">ш</span>
+        <span style="transition-delay:150ms"> </span>
+        <span style="transition-delay:200ms">г</span>
+        <span style="transition-delay:250ms">о</span>
+        <span style="transition-delay:300ms">р</span>
+        <span style="transition-delay:350ms">о</span>
+        <span style="transition-delay:400ms">д</span>
+        <span style="transition-delay:450ms">:</span>
+      </label>
+    </div>
+    <button id="confirmCityButton">
+      <span class="button_top">Подтвердить</span>
+    </button>
+    <div id="cityErrorMessage" class="error-message"></div>
+  </div>
 
-    confirmGenderButton.addEventListener("click", function() {
-      const selectedGender = document.querySelector('input[name="gender"]:checked');
-      if (!selectedGender) {
-        genderErrorMessage.textContent = "Ошибка: выберите ваш пол!";
-        genderErrorMessage.style.display = "block";
-        return;
-      }
-      genderErrorMessage.style.display = "none";
-      console.log("Выбранный пол:", selectedGender.id);
-      // Скрываем форму выбора пола и переходим к выбору возраста
-      document.querySelector(".gender-form-container").style.display = "none";
-      document.querySelector(".age-form-container").style.display = "block";
-    });
+  <!-- ================== Секция: Финальные анимации ================== -->
+  <!-- Отображаются только после корректного ввода города -->
+  <div class="final-animations-container" style="display: none;">
+    <!-- Анимация сердечка: расположена по горизонтали по центру и чуть выше середины по вертикали -->
+    <div class="heart-animation">
+      <div class="heart">
+        <i class="fa-solid fa-heart"></i>
+      </div>
+    </div>
+    <!-- Анимация текста: фиксированная часть и динамично меняющаяся часть -->
+    <div class="text-animation">
+      <p>
+        <span class="fixed-text">Подбираем для вас</span>
+        <span class="changing-text">любовь на века</span>
+      </p>
+    </div>
+  </div>
 
-    // ===== Обработчик выбора возраста =====
-    // Обновление отображаемого значения возраста при перемещении слайдера
-    const ageElem = document.querySelector('.age-form-container input[type="range"]');
-    const updateAgeValue = function() {
-      const newAge = ageElem.value;
-      const target = document.querySelector('.age-form-container .age-value');
-      target.innerHTML = newAge;
-    };
-    ageElem.addEventListener("input", updateAgeValue);
-
-    // Обработчик подтверждения выбора возраста
-    const confirmAgeButton = document.getElementById("confirmAgeButton");
-    const ageErrorMessage = document.getElementById("ageErrorMessage");
-    confirmAgeButton.addEventListener("click", function() {
-      const age = ageElem.value;
-      console.log("Выбранный возраст:", age);
-      // Здесь можно добавить дальнейшую обработку выбранного возраста
-    });
-  </script>
+  <!-- Подключение файла скриптов -->
+  <script src="script.js"></script>
 </body>
 </html>
